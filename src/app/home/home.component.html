@@ -1,0 +1,156 @@
+<!-- home.component.html -->
+<div class="home-container">
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1 class="hero-title">Master Your Workflow</h1>
+      <h2 class="hero-subtitle">Organize, prioritize, and achieve your goals with our powerful task management system</h2>
+      <div class="hero-actions">
+        <button pButton label="Create New Task" icon="pi pi-plus" class="p-button-rounded p-button-lg" routerLink="/task"></button>
+        <button pButton label="View Dashboard" icon="pi pi-chart-bar" class="p-button-rounded p-button-outlined p-button-lg ml-3"></button>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="https://i.ibb.co/pBzpDydv/hand-drawn-flat-design-business-planning-concept-23-2149190174-removebg-preview.png" alt="Task Management Illustration" />
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features-section">
+    <div class="section-header">
+      <h2 class="section-title">Platform Features</h2>
+      <p class="section-subtitle">Everything you need to stay organized and productive</p>
+    </div>
+    <div class="grid">
+      <div *ngFor="let feature of features" class="col-12 md:col-6 lg:col-3 p-3">
+        <div class="feature-card">
+          <div class="feature-header" [style.background]="feature.color">
+            <div class="feature-icon-container">
+              <i [class]="feature.icon"></i>
+            </div>
+            <div *ngIf="feature.badge" class="feature-badge">{{feature.badge}}</div>
+          </div>
+          <div class="feature-content">
+            <h3 class="feature-title">{{feature.title}}</h3>
+            <p class="feature-description">{{feature.description}}</p>
+            <a [routerLink]="feature.route" class="feature-link p-ripple">
+              Explore {{feature.title}}
+              <i class="pi pi-arrow-right ml-2"></i>
+              <span class="p-ink"></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dashboard Overview Section -->
+  <section class="dashboard-section">
+    <div class="grid">
+      <!-- Performance Metrics -->
+      <div class="col-12 lg:col-4">
+        <div class="metrics-card">
+          <h3 class="card-title">Performance Metrics</h3>
+          <div class="productivity-meter">
+            <div class="meter-container">
+              <div class="meter-bar">
+                <div class="meter-fill" [style.width.%]="taskMetrics.productivityScore"></div>
+              </div>
+              <div class="meter-label">
+                <span class="meter-value">{{taskMetrics.productivityScore}}</span>
+                <span class="meter-unit">%</span>
+              </div>
+            </div>
+            <p class="meter-description">Productivity Score</p>
+          </div>
+          <div class="metrics-grid">
+            <div class="metric-item">
+              <div class="metric-icon completed">
+                <i class="pi pi-check-circle"></i>
+              </div>
+              <div class="metric-info">
+                <span class="metric-value">{{taskMetrics.tasksCompleted}}</span>
+                <span class="metric-label">Completed</span>
+              </div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-icon in-progress">
+                <i class="pi pi-spinner"></i>
+              </div>
+              <div class="metric-info">
+                <span class="metric-value">{{taskMetrics.tasksInProgress}}</span>
+                <span class="metric-label">In Progress</span>
+              </div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-icon upcoming">
+                <i class="pi pi-calendar"></i>
+              </div>
+              <div class="metric-info">
+                <span class="metric-value">{{taskMetrics.upcomingDeadlines}}</span>
+                <span class="metric-label">Upcoming</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Upcoming Tasks -->
+      <div class="col-12 lg:col-4">
+        <div class="upcoming-tasks-card">
+          <h3 class="card-title">Upcoming Tasks</h3>
+          <div class="tasks-list">
+            <div *ngFor="let task of upcomingTasks" class="task-item">
+              <div class="task-priority" [ngClass]="getPriorityClass(task.priority)"></div>
+              <div class="task-content">
+                <h4 class="task-title">{{task.title}}</h4>
+                <p class="task-due">Due: {{task.dueDate | date:'MMM d'}}</p>
+              </div>
+              <button pButton icon="pi pi-ellipsis-v" class="p-button-rounded p-button-text p-button-sm task-menu"></button>
+            </div>
+          </div>
+          <div class="view-all-container">
+            <button pButton label="View All Tasks" icon="pi pi-list" class="p-button-outlined p-button-sm"></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="col-12 lg:col-4">
+        <div class="quick-actions-card">
+          <h3 class="card-title">Quick Actions</h3>
+          <div class="actions-container">
+            <a *ngFor="let action of quickActions" class="action-button p-ripple" [style.background-color]="action.color + '15'">
+              <div class="action-icon" [style.color]="action.color" [style.background-color]="action.color + '15'">
+                <i [class]="action.icon"></i>
+              </div>
+              <span class="action-label">{{action.label}}</span>
+              <span class="p-ink"></span>
+            </a>
+          </div>
+          <div class="activity-timeline">
+            <h4 class="timeline-title">Recent Activity</h4>
+            <div class="timeline-item">
+              <div class="timeline-icon">
+                <i class="pi pi-check"></i>
+              </div>
+              <div class="timeline-content">
+                <p class="timeline-text">You completed <b>Project Review</b></p>
+                <span class="timeline-time">10 minutes ago</span>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-icon">
+                <i class="pi pi-user-edit"></i>
+              </div>
+              <div class="timeline-content">
+                <p class="timeline-text">You were assigned to <b>Website Redesign</b></p>
+                <span class="timeline-time">1 hour ago</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

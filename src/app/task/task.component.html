@@ -1,0 +1,216 @@
+<div class="card">
+    <p-toast />
+    <p-toolbar styleClass="mb-4 gap-2">
+        <ng-template pTemplate="left">
+            <p-button
+                severity="success"
+                label="New" 
+                icon="pi pi-plus" 
+                class="mr-2" 
+                (onClick)="openNew()" />
+            <p-button
+                severity="danger" 
+                label="Delete" 
+                icon="pi pi-trash" 
+                (onClick)="deleteSelectedProducts()" 
+                [disabled]="!selectedProducts || !selectedProducts.length" />
+        </ng-template>
+
+        <ng-template pTemplate="right">
+            <p-fileUpload 
+                mode="basic" 
+                accept="image/*" 
+                [maxFileSize]="1000000" 
+                label="Import" 
+                chooseLabel="Import" 
+                class="mr-2 inline-block" />
+            <p-button
+                severity="help" 
+                label="Export" 
+                icon="pi pi-upload" />
+        </ng-template>
+    </p-toolbar>
+
+    <p-table
+        #dt
+        [value]="products"
+        [rows]="10"
+        [paginator]="true"
+        [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']"
+        [tableStyle]="{ 'min-width': '75rem' }"
+        [(selection)]="selectedProducts"
+        [rowHover]="true"
+        dataKey="id"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [showCurrentPageReport]="true"
+    >
+    <ng-template pTemplate="caption">
+        <div class="flex align-items-center justify-content-between">
+            <h5 class="m-0">Manage Products</h5>
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input 
+                    pInputText 
+                    type="text" 
+                    (input)="dt.filterGlobal($event, 'contains')" 
+                    placeholder="Search..." />
+            </span>
+        </div>
+    </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 4rem">
+                    <p-tableHeaderCheckbox />
+                </th>
+                <th pSortableColumn="S.No" style="min-width:8rem">
+                    S.No <p-sortIcon field="S.No" />
+                </th>
+                <th pSortableColumn="Title">
+                    Title <p-sortIcon field="Title" />
+                </th>
+                <th pSortableColumn="Description" style="min-width:10rem">
+                    Description <p-sortIcon field="Description" />
+                </th>
+                <th pSortableColumn="Due Date">
+                    Due Date <p-sortIcon field="Due Date" />
+                </th>
+                <th pSortableColumn="Status" style="min-width:10rem">
+                    Status <p-sortIcon field="Status" />
+                </th>
+                <th style="min-width:10rem; text-align: center;">
+                    Actions
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+            <tr>
+                <td>
+                    <p-tableCheckbox [value]="product" />
+                </td>
+                <td>
+                    {{ product.id }}
+                </td>
+                <td>
+                    {{ product.title }}
+                </td>
+                <td>
+                    {{ product.description }}
+                </td>
+                <td>
+                    {{product.dueDat | date}}
+                </td>
+                <td>
+                    <p-tag 
+                        [value]="product.status" 
+                        [severity]="getSeverity(product.status)" />
+                </td>
+                <td>
+                    <p-button 
+                        icon="pi pi-bell" 
+                        class="mr-4"
+                        severity="primary" 
+                        [rounded]="true" 
+                        [outlined]="true" 
+                        (onClick)="deleteProduct(product)" />  
+                    <p-button 
+                        icon="pi pi-pencil" 
+                        class="mr-4" 
+                        [rounded]="true" 
+                        [outlined]="true" 
+                        severity="success" 
+                        (onClick)="editProduct(product)"/>
+                    <p-button 
+                        icon="pi pi-trash" 
+                        severity="danger" 
+                        [rounded]="true" 
+                        [outlined]="true" 
+                        (onClick)="deleteProduct(product)" />    
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <div class="flex align-items-center justify-content-between">
+                In total there are {{ products ? products.length : 0 }} products.
+            </div>
+        </ng-template>
+    </p-table>
+
+    <p-dialog [ngStyle]="productDialog?{'position': 'fixed','top': '0','left': '0','z-index': '1040','width': '100vw','height': '100vh','background-color': 'rgba(0, 0, 0, 0.4)','backdrop-filter': 'blur(6px)'} : {'background-color': ''}"
+        [(visible)]="productDialog" 
+        [style]="{ width: '500px', height: '800px' }" 
+        header="Task Details" 
+        [modal]="true" 
+        styleClass="p-fluid">
+            <ng-template pTemplate="content">
+                <div class="field">
+                    <label for="name">Title</label>
+                    <input 
+                        type="text" 
+                        pInputText 
+                        id="name" 
+                        [(ngModel)]="product.title" 
+                        required 
+                        autofocus />
+                    <small class="p-error" *ngIf="submitted && !product.title">
+                        Name is required.
+                    </small>
+                </div>
+                <div class="field">
+                    <label for="description">Description</label>
+                    <textarea 
+                        id="description" 
+                        pInputTextarea 
+                        [(ngModel)]="product.description" 
+                        required 
+                        rows="3" 
+                        cols="20">
+                    </textarea>
+                </div>
+
+                <div class="field">
+                    <label for="inventoryStatus">Status</label>
+                    <p-dropdown 
+                        [(ngModel)]="product.status" 
+                        inputId="inventoryStatus" 
+                        [options]="statuses">
+                            <ng-template pTemplate="selectedItem">
+                                <p-tag 
+                                    [value]="product.status.toUpperCase()"
+                                    [severity]="getSeverity(product.status.toUpperCase())" />
+                            </ng-template>
+                            <ng-template let-option pTemplate="item">
+                                <p-tag 
+                                    [value]="option.label" 
+                                    [severity]="getSeverity(option.label)" />
+                            </ng-template>
+                    </p-dropdown>
+                </div>
+
+                <div class="formgrid grid">
+                    <div class="field col">
+                        <label for="quantity">Due Date</label>
+                            <p-calendar dateFormat="yy-mm-dd" id="quantity" [showIcon]="true" [touchUI]="true" 
+                            [(ngModel)]="product.dueDat" />
+                    </div>
+                </div>
+            </ng-template>
+
+            <ng-template pTemplate="footer">
+                <p-button 
+                    label="Cancel" 
+                    icon="pi pi-times" 
+                    [text]="true" 
+                    (onClick)="hideDialog()" />
+                <p-button
+                    label="Save" 
+                    icon="pi pi-check" 
+                    [text]="true" 
+                    (onClick)="saveProduct()" />
+            </ng-template>
+    </p-dialog>
+
+
+    <p-confirmDialog [style]="{ width: '450px' }" />
+
+
+<!-- <p-dropdown [(ngModel)]="product.status" inputId="inventoryStatus" [options]="statuses"> -->

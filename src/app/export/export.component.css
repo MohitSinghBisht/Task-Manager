@@ -1,0 +1,156 @@
+/* home.component.scss */
+:host {
+  display: block;
+}
+
+.home-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.welcome-section {
+  margin-bottom: 2rem;
+  
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+  }
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-left: 1rem;
+  
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    height: 60%;
+    width: 4px;
+    background-color: var(--primary-color);
+    border-radius: 4px;
+  }
+}
+
+/* Feature cards styling */
+.feature-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 12px;
+  overflow: hidden;
+  height: 100%;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  }
+  
+  .feature-card-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 0.5rem;
+  }
+  
+  h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 1rem 0 0.5rem;
+  }
+  
+  p {
+    color: var(--text-color-secondary);
+    margin-bottom: auto;
+    padding-bottom: 1rem;
+  }
+}
+
+.feature-icon-container {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  i {
+    font-size: 1.75rem;
+  }
+}
+
+/* // Stats card styling */
+.quick-stats {
+  .grid {
+    text-align: center;
+  }
+  
+  .stat-item {
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    
+    .stat-value {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+    
+    .stat-label {
+      font-size: 0.875rem;
+      color: var(--text-color-secondary);
+    }
+  }
+}
+
+/* // Activity section */
+.activity-card {
+  .activity-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.5rem;
+    
+    .activity-text {
+      font-weight: 500;
+    }
+    
+    .activity-time {
+      color: var(--text-color-secondary);
+    }
+  }
+}
+
+/* // Quick links section */
+.quick-links-card {
+  .quick-link-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--surface-200);
+    cursor: pointer;
+    transition: background-color 0.2s;
+    
+    &:last-child {
+      border-bottom: none;
+    }
+    
+    &:hover {
+      background-color: var(--surface-100);
+    }
+    
+    i {
+      color: var(--primary-color);
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .welcome-section h1 {
+    font-size: 2rem;
+  }
+}
