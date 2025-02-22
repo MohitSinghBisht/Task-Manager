@@ -1,20 +1,44 @@
 <!-- home.component.html -->
-<div class="home-container">
+<div class="container">
   <!-- Hero Section -->
+  <!-- <div style="color: #5b5ebd;"> -->
+  <nav class="navbar">
+    <div class="nav_logo">
+      <a href="" >Alpha</a>
+    </div>
+
+    <div class="nav_links">
+      <a href="">Home</a>
+      <a href="">About</a>
+      <a href="">Blog</a>
+      <a href="">Contact</a>
+    </div>
+
+    <div class="nav_button">
+      <a href="">Sign in</a>
+      <button pButton label="Login" pRipple class="p-button-rounded p-button-sm"
+      routerLink="/login"></button>
+    </div>
+  </nav>
+
   <section class="hero-section">
     <div class="hero-content">
       <h1 class="hero-title">Master Your Workflow</h1>
-      <h2 class="hero-subtitle">Organize, prioritize, and achieve your goals with our powerful task management system</h2>
+      <h2 class="hero-subtitle">Organize, prioritize, and achieve your goals with our powerful task management system
+      </h2>
       <div class="hero-actions">
-        <button pButton label="Create New Task" icon="pi pi-plus" class="p-button-rounded p-button-lg" routerLink="/task"></button>
-        <button pButton label="View Dashboard" icon="pi pi-chart-bar" class="p-button-rounded p-button-outlined p-button-lg ml-3"></button>
+        <button pButton label="Create New Task" icon="pi pi-plus" pRipple class="p-button-rounded p-button-lg"
+          routerLink="/task"></button>
+        <button pButton label="View Dashboard" icon="pi pi-chart-bar" pRipple
+          class="p-button-rounded p-button-outlined p-button-lg ml-3"></button>
       </div>
     </div>
     <div class="hero-image">
-      <img src="https://i.ibb.co/pBzpDydv/hand-drawn-flat-design-business-planning-concept-23-2149190174-removebg-preview.png" alt="Task Management Illustration" />
+      <img
+        src="https://i.ibb.co/pBzpDydv/hand-drawn-flat-design-business-planning-concept-23-2149190174-removebg-preview.png"
+        alt="Task Management Illustration" />
     </div>
   </section>
-
   <!-- Features Section -->
   <section class="features-section">
     <div class="section-header">
@@ -106,7 +130,8 @@
                 <h4 class="task-title">{{task.title}}</h4>
                 <p class="task-due">Due: {{task.dueDate | date:'MMM d'}}</p>
               </div>
-              <button pButton icon="pi pi-ellipsis-v" class="p-button-rounded p-button-text p-button-sm task-menu"></button>
+              <button pButton icon="pi pi-ellipsis-v"
+                class="p-button-rounded p-button-text p-button-sm task-menu"></button>
             </div>
           </div>
           <div class="view-all-container">
@@ -120,7 +145,8 @@
         <div class="quick-actions-card">
           <h3 class="card-title">Quick Actions</h3>
           <div class="actions-container">
-            <a *ngFor="let action of quickActions" class="action-button p-ripple" [style.background-color]="action.color + '15'">
+            <a *ngFor="let action of quickActions" class="action-button p-ripple"
+              [style.background-color]="action.color + '15'">
               <div class="action-icon" [style.color]="action.color" [style.background-color]="action.color + '15'">
                 <i [class]="action.icon"></i>
               </div>

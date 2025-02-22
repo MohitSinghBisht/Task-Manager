@@ -1,25 +1,51 @@
 /* home.component.scss */
-:host {
-  display: block;
-}
-
-.home-container {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 2rem;
-}
 
 /* // Hero Section - Completely Refined */
+
+.navbar{
+ background-color: #5b5ebd;
+ display: flex;
+ flex-wrap: wrap;
+ justify-content: space-around;
+}
+
+
+.navbar a{
+  padding: 0px 25px 25px 25px;
+  text-decoration: none;
+  color: whitesmoke;
+}
+
+.nav_logo{
+margin-top: 10px;
+font-size: 1.5rem;
+font-weight: 500;
+}
+
+.nav_links{
+  margin-top: 10px;
+  font-size: 1rem;
+  font-weight: 350;
+}
+.nav_button{
+  margin-top: 10px;
+  font-size: 1rem;
+  font-weight: 350;
+  justify-items: center;
+}
+
+
 .hero-section {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  background-color: #5b5ebd;
+  justify-content: space-around;
   align-items: center;
   padding: 4rem 2rem;
-  margin: -2rem -2rem 2rem -2rem;
-  background: linear-gradient(135deg, var(--primary-50) 0%, var(--surface-0) 100%);
+  margin: 0 0 16rem 0;
+  /* background: linear-gradient(135deg, var(--primary-50) 0%, var(--surface-0) 100%); */
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */
   
   &:before {
     content: '';
@@ -28,7 +54,7 @@
     top: 0;
     width: 70%;
     height: 100%;
-    background: radial-gradient(circle at top right, var(--primary-100) 0%, transparent 60%);
+    /* background: radial-gradient(circle at top right, var(--primary-100) 0%, transparent 60%); */
     opacity: 0.8;
     z-index: 0;
   }
@@ -46,16 +72,31 @@
   font-size: 3.5rem;
   font-weight: 800;
   margin: 0;
-  background: linear-gradient(90deg, var(--primary-color) 0%, var(--primary-600) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: whitesmoke;
+  /* background: linear-gradient(90deg, var(--primary-color) 0%, var(--primary-600) 100%); */
+  /* -webkit-background-clip: text; */
+  /* -webkit-text-fill-color: transparent; */
   line-height: 1.1;
+}
+
+.p-button.p-button-lg {
+  color: black;
+  border: none;
+  background-color: #fac802;
+  font-size: 1rem;
+  padding: 0.9375rem 1.5625rem;
+}
+
+.p-button.p-button-sm {
+  color: black;
+  border: none;
+  background-color: #fac802;
 }
 
 .hero-subtitle {
   font-size: 1.25rem;
   font-weight: 400;
-  color: var(--text-color-secondary);
+  color: whitesmoke;
   margin: 1.5rem 0 2.5rem;
   line-height: 1.5;
 }
@@ -587,3 +628,4 @@
     font-size: 1.5rem;
   }
 }
+
