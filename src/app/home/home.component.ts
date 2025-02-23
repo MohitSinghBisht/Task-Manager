@@ -13,7 +13,7 @@ export class HomeComponent {
       icon: 'pi pi-check-square',
       description: 'Create, organize, and track your tasks with powerful filters and priority management',
       color: '#3B82F6', // Blue
-      route: '/tasks',
+      route: '/task',
       badge: 'Core'
     },
     {

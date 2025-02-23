@@ -80,19 +80,19 @@ export class TaskComponent {
     });
   }
 
-  notifyTask() {
-    // this.confirmationService.confirm({
-    //   header: 'Confirm',
-    //   message: '',
-    //   accept: () => {
-    //     this.api.deleteTask(product.id).subscribe(data=>{
-    //       console.log(data);
-    //       this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
-    //       this.product = { title: '', description: '', status: '', dueDat: null };
-    //       this.callMethod();
-    //     })
-    //   }
-    // });
+  notifyTask(product:TaskModel) {
+    this.confirmationService.confirm({
+      header: 'Confirm',
+      message: 'Do you want to set the reminder ?',
+      accept: () => {
+        this.api.deleteTask(product.id).subscribe(data=>{
+          console.log(data);
+          this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
+          this.product = { title: '', description: '', status: '', dueDat: null };
+          this.callMethod();
+        })
+      }
+    });
   }
 
   hideDialog() {

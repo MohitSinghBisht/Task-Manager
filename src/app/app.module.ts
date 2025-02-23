@@ -30,10 +30,11 @@ import { RouterOutlet } from "@angular/router";
 import {  KnobModule } from "primeng/knob";
 import { AppRoutingModule } from "./app-routing.module";
 import { ExportComponent } from "./export/export.component";
+import { ChartModule } from 'primeng/chart';
 
 @NgModule({
     declarations: [AppComponent,HomeComponent,TaskComponent,ExportComponent],
-    imports: [BrowserModule, BrowserAnimationsModule,TimelineModule,KnobModule,CardModule, TableModule, DialogModule, RippleModule, ButtonModule, ToastModule, ToolbarModule, ConfirmDialogModule, InputTextModule, InputTextareaModule, CommonModule, FileUploadModule, DropdownModule, TagModule, RadioButtonModule, CalendarModule, RatingModule, InputTextModule, FormsModule, InputNumberModule,RouterOutlet,AppRoutingModule],
+    imports: [BrowserModule, BrowserAnimationsModule,TimelineModule,ChartModule,KnobModule,CardModule, TableModule, DialogModule, RippleModule, ButtonModule, ToastModule, ToolbarModule, ConfirmDialogModule, InputTextModule, InputTextareaModule, CommonModule, FileUploadModule, DropdownModule, TagModule, RadioButtonModule, CalendarModule, RatingModule, InputTextModule, FormsModule, InputNumberModule,RouterOutlet,AppRoutingModule],
     providers: [provideHttpClient(), MessageService, ConfirmationService],
     bootstrap: [AppComponent]
 })
