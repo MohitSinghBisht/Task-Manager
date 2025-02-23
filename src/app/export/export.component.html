@@ -1,4 +1,86 @@
-
-    <div class="section section2">Section 2</div>
-    <div class="section section3">Section 3</div>
-    <div class="section section4">Section 4</div>
+<!-- home.component.html -->
+<div class="app-container">
+    <nav class="navbar">
+      <div class="nav-logo">
+        <a href="">Atlas</a>
+      </div>
+  
+      <div class="nav-links">
+        <a href="">Home</a>
+        <a href="">About</a>
+        <a href="">Blog</a>
+        <a href="">Pricing</a>
+        <a href="">Contact</a>
+      </div>
+  
+      <div class="nav-actions">
+        <a href="" class="sign-in">Sign in</a>
+        <button pButton label="Get started" class="p-button-rounded get-started-btn"></button>
+      </div>
+    </nav>
+  
+    <section class="hero-section">
+      <div class="hero-content">
+        <span class="tag">Introducing SaaS</span>
+        <h1 class="hero-title">Streamline your projects effortlessly</h1>
+        <p class="hero-subtitle">
+          Streamline your workflow effortlessly with intelligent project management tools designed to boost productivity and keep your team on track.
+        </p>
+        <div class="hero-actions">
+          <button pButton label="Start free trial" class="p-button-rounded start-trial-btn"></button>
+          <button pButton label="How it works" icon="pi pi-play" class="p-button-rounded p-button-text how-it-works-btn"></button>
+        </div>
+      </div>
+  
+      <div class="hero-cards">
+        <!-- Productivity Card -->
+        <div class="dashboard-card productivity-card">
+          <div class="card-header">
+            <h3>Productivity</h3>
+            <i class="pi pi-ellipsis-h"></i>
+          </div>
+          <div class="progress-circle">
+            <p-knob [(ngModel)]="productivityValue" [readonly]="true" [size]="150"></p-knob>
+            <span class="progress-label">Workplace KPI</span>
+          </div>
+          <div class="compare-stats">
+            <span class="stat-increase">↑ 25%</span>
+            <span class="stat-period">vs last month</span>
+          </div>
+        </div>
+  
+        <!-- Tasks Card -->
+        <div class="dashboard-card tasks-card">
+          <div class="card-header">
+            <h3>Completed Task</h3>
+            <button pButton label="View all" class="p-button-text"></button>
+          </div>
+          <div class="tasks-stats">
+            <h2>310</h2>
+            <span class="stat-label">Total Tasks</span>
+            <span class="stat-increase">↑ 0.25%</span>
+          </div>
+          <p-chart type="line" [data]="taskData" [options]="chartOptions"></p-chart>
+        </div>
+  
+        <!-- Activity Card -->
+        <div class="dashboard-card activity-card">
+          <div class="card-header">
+            <h3>Recent Activity</h3>
+            <i class="pi pi-external-link"></i>
+          </div>
+          <div class="activity-timeline">
+            <!-- Activity items -->
+            <div class="activity-item" *ngFor="let activity of recentActivities">
+              <img [src]="activity.avatar" [alt]="activity.name" class="avatar">
+              <div class="activity-content">
+                <p><strong>{{activity.name}}</strong> {{activity.action}}</p>
+                <span class="activity-time">{{activity.time}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  

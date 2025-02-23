@@ -1,23 +1,22 @@
 <!-- home.component.html -->
-<div class="container">
-  <!-- Hero Section -->
-  <!-- <div style="color: #5b5ebd;"> -->
+  <section class="section1">
+    <div class="app-container">
   <nav class="navbar">
-    <div class="nav_logo">
-      <a href="" >Alpha</a>
+    <div class="nav-logo">
+      <a href="">Alpha</a>
     </div>
 
-    <div class="nav_links">
+    <div class="nav-links">
       <a href="">Home</a>
       <a href="">About</a>
       <a href="">Blog</a>
+      <a href="">Pricing</a>
       <a href="">Contact</a>
     </div>
 
-    <div class="nav_button">
-      <a href="">Sign in</a>
-      <button pButton label="Login" pRipple class="p-button-rounded p-button-sm"
-      routerLink="/login"></button>
+    <div class="nav-actions">
+      <a href="" class="sign-in">Sign in</a>
+      <button pButton label="Get started" class="p-button-rounded get-started-btn"></button>
     </div>
   </nav>
 
@@ -39,7 +38,12 @@
         alt="Task Management Illustration" />
     </div>
   </section>
+  </div>
+</section>
+
   <!-- Features Section -->
+  <section class="section2">
+    <div class="app-container">
   <section class="features-section">
     <div class="section-header">
       <h2 class="section-title">Platform Features</h2>
@@ -67,8 +71,12 @@
       </div>
     </div>
   </section>
+  </div>
+  </section>
 
   <!-- Dashboard Overview Section -->
+   <div class="section3">
+    <div class="app-container">
   <section class="dashboard-section">
     <div class="grid">
       <!-- Performance Metrics -->
@@ -146,7 +154,7 @@
           <h3 class="card-title">Quick Actions</h3>
           <div class="actions-container">
             <a *ngFor="let action of quickActions" class="action-button p-ripple"
-              [style.background-color]="action.color + '15'">
+              [style.background-color]="action.color + '40'">
               <div class="action-icon" [style.color]="action.color" [style.background-color]="action.color + '15'">
                 <i [class]="action.icon"></i>
               </div>
@@ -179,4 +187,88 @@
       </div>
     </div>
   </section>
-</div>
+   </div>
+  </div>
+
+<!-- New Statistics Section -->
+<section class="statistics-section">
+  <div class="grid">
+    <div class="col-12 md:col-3">
+      <div class="stat-card">
+        <i class="pi pi-users stat-icon"></i>
+        <h3 class="stat-number">10,000+</h3>
+        <p class="stat-label">Active Users</p>
+      </div>
+    </div>
+    <div class="col-12 md:col-3">
+      <div class="stat-card">
+        <i class="pi pi-check-circle stat-icon"></i>
+        <h3 class="stat-number">1M+</h3>
+        <p class="stat-label">Tasks Completed</p>
+      </div>
+    </div>
+    <div class="col-12 md:col-3">
+      <div class="stat-card">
+        <i class="pi pi-globe stat-icon"></i>
+        <h3 class="stat-number">50+</h3>
+        <p class="stat-label">Countries</p>
+      </div>
+    </div>
+    <div class="col-12 md:col-3">
+      <div class="stat-card">
+        <i class="pi pi-star stat-icon"></i>
+        <h3 class="stat-number">4.9/5</h3>
+        <p class="stat-label">User Rating</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- New Footer Section -->
+<footer class="footer-section">
+  <div class="footer-content">
+    <div class="grid">
+      <div class="col-12 md:col-3">
+        <div class="footer-brand">
+          <h3>Alpha</h3>
+          <p>Empowering your productivity journey with smart task management solutions.</p>
+          <div class="social-links">
+            <a href="#" class="social-link"><i class="pi pi-facebook"></i></a>
+            <a href="#" class="social-link"><i class="pi pi-twitter"></i></a>
+            <a href="#" class="social-link"><i class="pi pi-linkedin"></i></a>
+            <a href="#" class="social-link"><i class="pi pi-github"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 md:col-3">
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Features</a></li>
+          <li><a href="#">Pricing</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+      <div class="col-12 md:col-3">
+        <h4>Resources</h4>
+        <ul class="footer-links">
+          <li><a href="#">Documentation</a></li>
+          <li><a href="#">API Reference</a></li>
+          <li><a href="#">Community</a></li>
+          <li><a href="#">Support</a></li>
+        </ul>
+      </div>
+      <div class="col-12 md:col-3">
+        <h4>Newsletter</h4>
+        <p>Subscribe to our newsletter for updates and tips.</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Enter your email" class="p-inputtext"/>
+          <button pButton label="Subscribe" class="p-button-rounded"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 Alpha. All rights reserved.</p>
+  </div>
+</footer>
